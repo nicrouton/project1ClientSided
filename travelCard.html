@@ -9,6 +9,58 @@
     <title>Project 1</title>
   </head>
   <body>
-    
+    <div class="cards">
+      <a href="https://en.wikipedia.org/wiki/Paris" class="destinations">
+        <img src="" alt="Paris" id="parisImage">
+        <h4>Paris, France</h4>
+        <p>paris is cool</p>
+      </a>
+      <a href="https://en.wikipedia.org/wiki/Paris" class="destinations">
+        <img src="" alt="Barcelona" id="barcelonaImage">
+        <h4>Barcelona, Spain</h4>
+        <p>paris is cool</p>
+      </a>
+      <a href="https://en.wikipedia.org/wiki/Paris" class=""destinations>
+        <img src="" alt="Vegas" id="vegasImage">
+        <h4>Las Vegas, USA</h4>
+        <p>paris is cool</p>
+      </a>
+    </div>
+    <script>
+        async function getJson() {
+        //
+          const url = "./destinationData.json";
+
+          try {
+            const response = await fetch(url);
+            if (!response.ok) {
+                throw new Error(`Response status: ${response.status}`);
+            }
+
+            const json = await response.json();
+            console.log(json);
+            // parse JSON
+            const parsedJSon = JSON.parse(json);
+
+            // add a card for each json element using the title, image src, and descriptions
+            parsedJSon.forEach(element => {
+              cardData = `
+                  <a href="https://duckduckgo.com/?q=paris&ia=web" class="destinations">
+                    <img src=${element.image} alt=${element.name}>
+                    <h4>${element.name}</h4>
+                    <p>${element.description}</p>
+                  </a>
+                `;
+
+            // update html
+            document.getElementById("cards").innerHTML += cardData;
+            });
+          } catch (error) {
+            console.error(error.message);
+          }
+        } 
+
+        getJson();
+    </script>
   </body>
 </html>
