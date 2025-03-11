@@ -7,8 +7,40 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Project 1</title>
+    <style>
+      body {
+        background-color: rgb(99, 234, 234);
+      }
+
+      img {
+        border-radius: 8px;
+        max-width: 50%;
+      }
+
+      #cards {
+        background-color: rgb(99, 234, 234);
+      }
+
+      div {
+        display: flex;
+        justify-content: space-evenly;
+        flex-direction: column;
+        background-color: rgb(65, 197, 209);
+        border-style: inset;
+        border-width: 5px 5px;
+      }
+
+      h1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color:  rgb(65, 197, 209);
+      }
+    </style>
   </head>
   <body>
+    <h1>ClearSky Travel</h1>
+    <br>
     <div id="cards"></div>
     <script>
         let jsonDestination = {
@@ -83,6 +115,7 @@
                  <p>${element.description}</p>
                  <img src="${element.image}" alt="${element.description}">
                  <a href="https://duckduckgo.com/?q=paris&ia=web" class="destinations"><p>Click here to see more.</p></a>
+                 <br>
                 `;
 
             // update html
