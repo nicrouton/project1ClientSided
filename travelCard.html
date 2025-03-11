@@ -9,58 +9,90 @@
     <title>Project 1</title>
   </head>
   <body>
-    <div class="cards">
-      <a href="https://en.wikipedia.org/wiki/Paris" class="destinations">
-        <img src="" alt="Paris" id="parisImage">
-        <h4>Paris, France</h4>
-        <p>paris is cool</p>
-      </a>
-      <a href="https://en.wikipedia.org/wiki/Paris" class="destinations">
-        <img src="" alt="Barcelona" id="barcelonaImage">
-        <h4>Barcelona, Spain</h4>
-        <p>paris is cool</p>
-      </a>
-      <a href="https://en.wikipedia.org/wiki/Paris" class=""destinations>
-        <img src="" alt="Vegas" id="vegasImage">
-        <h4>Las Vegas, USA</h4>
-        <p>paris is cool</p>
-      </a>
-    </div>
+    <div id="cards"></div>
     <script>
-        async function getJson() {
-        //
-          const url = "./destinationData.json";
+        let jsonDestination = {
+          "cards": [
+              {
+                  "id": 1,
+                  "name": "Paris, France",
+                  "image": "paris.jpg",
+                  "description": "The city of love, fashion, and cooking.",
+                  "details": {
+                      "long_description": "Paris is the capital of France and is known for being home to talented designers and cooks.",
+                      "itenary": [
+                          "Day 1: Arrive in Paris and visit the Eiffel Tower.",
+                          "Day 2: Discover the Louvre Musuem and stroll through the Champs-Elysees.",
+                          "Day 3: Visit Goustau's, a five star restaurant, and walk along the Seine River."
+                      ],
+                      "location": {
+                          "lattitude": 48.8446,
+                          "longitude": 2.3522
+                      }
 
-          try {
-            const response = await fetch(url);
-            if (!response.ok) {
-                throw new Error(`Response status: ${response.status}`);
-            }
+                  }
 
-            const json = await response.json();
-            console.log(json);
-            // parse JSON
-            const parsedJSon = JSON.parse(json);
 
-            // add a card for each json element using the title, image src, and descriptions
-            parsedJSon.forEach(element => {
-              cardData = `
-                  <a href="https://duckduckgo.com/?q=paris&ia=web" class="destinations">
-                    <img src=${element.image} alt=${element.name}>
-                    <h4>${element.name}</h4>
-                    <p>${element.description}</p>
-                  </a>
+              },
+              {
+                  "id": 2,
+                  "name": "Barcelona, Spain",
+                  "image": "barcelona.jpg",
+                  "description": "It is the capital and largest city of the autonomous community of Catalonia.",
+                  "details": {
+                      "long_description": "It is the capital and largest city of the autonomous community of Catalonia, as well as the second-most populous municipality of Spain.",
+                      "itenary": [
+                          "Day 1: Arrive in Barcelona and visit the Basilica de la Sagrada Familia.",
+                          "Day 2: Follow the audio tour guide at Casa Batllo.",
+                          "Day 3: Sunbathe and swim at La Barceloneta."
+                      ],
+                      "location": {
+                          "lattitude": 61.7653,
+                          "longitude": 5.012
+                      }
+                  }
+              },
+              {
+                  "id": 3,
+                  "name": "Las Vegas, USA",
+                  "image": "lasVegas.jpg",
+                  "description": "The city of sin. What happens in Vegas, stays in Vegas.",
+                  "details": {
+                      "long_description": "Las Vegas, colloquially referred to as Vegas, is the most populous city in the U.S. state of Nevada and the seat of Clark County",
+                      "itenary": [
+                          "Day 1: Arrive in Vegas and visit the casinos.",
+                          "Day 2: See one of the many shows offered at the Encore theater like Drag Race Live.",
+                          "Day 3: Visit Netflix Bites, restaurant with themed drinks and food are served."
+                      ],
+                      "location": {
+                          "lattitude": 100.1290,
+                          "longitude": 9.197
+                      }
+                  }
+              }
+          ] 
+      }
+
+      const cardContainer = document.getElementById("cards");
+
+      function getJsonLocal(destinationArg) {
+        destinationArg.cards.forEach(element => {
+          const cardItem = document.createElement("div");
+          cardItem.innerHTML = `
+				<h4>${element.name}</h4>
+                 <p>${element.description}</p>
+                 <img src="${element.image}" alt="${element.description}">
+                 <a href="https://duckduckgo.com/?q=paris&ia=web" class="destinations"><p>Click here to see more.</p></a>
                 `;
 
             // update html
-            document.getElementById("cards").innerHTML += cardData;
+            cardContainer.appendChild(cardItem);
             });
-          } catch (error) {
-            console.error(error.message);
-          }
-        } 
+      }
 
-        getJson();
+
+
+        getJsonLocal(jsonDestination);
     </script>
   </body>
 </html>

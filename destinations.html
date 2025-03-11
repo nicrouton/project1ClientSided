@@ -1,0 +1,44 @@
+<!--destination.html-->
+<!--Created by Nicholas Croulet-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project 1</title>
+  </head>
+  <body>
+    <script>
+        async function getJson() {
+          const url = "./destinationData.json";
+
+          try {
+            const response = await fetch(url);
+            if (!response.ok) {
+                throw new Error(`Response status: ${response.status}`);
+            }
+
+            const json = await response.json();
+            console.log(json);
+            // parse JSON
+            const parsedJSon = JSON.parse(json);
+
+            // add a card for each json element using the title, image src, and descriptions
+            parsedJSon.forEach(element => {
+              cardData = `
+                    <img src=${element.image} alt=${element.name}>
+                    <h4>${element.name}</h4>
+                    <p>${element.description}</p>
+                `;
+
+            // update html
+            document.getElementById("cards").innerHTML += cardData;
+            });
+          } catch (error) {
+            console.error(error.message);
+          }
+        } 
+    </script>
+  </body>
+</html>
