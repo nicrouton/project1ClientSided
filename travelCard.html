@@ -43,7 +43,7 @@
     <br>
     <div id="cards"></div>
     <script>
-        let jsonDestination = {
+        jsonDestination = {
           "cards": [
               {
                   "id": 1,
@@ -114,13 +114,13 @@
 				<h4>${element.name}</h4>
                  <p>${element.description}</p>
                  <img src="${element.image}" alt="${element.description}">
-                 <a href="https://duckduckgo.com/?q=paris&ia=web" class="destinations"><p>Click here to see more.</p></a>
+                 <a href="destinations.html?id=${element.id}" class="destinations"><p>Click here to see more.</p></a>
                  <br>
                 `;
 
             // update html
             cardContainer.appendChild(cardItem);
-            });
+          });
       }
 
 

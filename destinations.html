@@ -7,38 +7,105 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Project 1</title>
+    <style>
+      body {
+        background-color: rgb(99, 234, 234);
+      }
+
+      img {
+        border-style: solid;
+        max-width: 80%;
+      }
+    </style>
   </head>
   <body>
+    <title>Destination Details</title>
+    <br>
+    <div id="destInfo"></div>
     <script>
-        async function getJson() {
-          const url = "./destinationData.json";
 
-          try {
-            const response = await fetch(url);
-            if (!response.ok) {
-                throw new Error(`Response status: ${response.status}`);
-            }
+jsonDestination = {
+          "cards": [
+              {
+                  "id": 1,
+                  "name": "Paris, France",
+                  "image": "paris.jpg",
+                  "description": "The city of love, fashion, and cooking.",
+                  "details": {
+                      "long_description": "Paris is the capital of France and is known for being home to talented designers and cooks.",
+                      "itenary": [
+                          "Day 1: Arrive in Paris and visit the Eiffel Tower.",
+                          "Day 2: Discover the Louvre Musuem and stroll through the Champs-Elysees.",
+                          "Day 3: Visit Goustau's, a five star restaurant, and walk along the Seine River."
+                      ],
+                      "location": {
+                          "lattitude": 48.8446,
+                          "longitude": 2.3522
+                      }
 
-            const json = await response.json();
-            console.log(json);
-            // parse JSON
-            const parsedJSon = JSON.parse(json);
+                  }
 
-            // add a card for each json element using the title, image src, and descriptions
-            parsedJSon.forEach(element => {
-              cardData = `
-                    <img src=${element.image} alt=${element.name}>
-                    <h4>${element.name}</h4>
-                    <p>${element.description}</p>
-                `;
 
-            // update html
-            document.getElementById("cards").innerHTML += cardData;
-            });
-          } catch (error) {
-            console.error(error.message);
-          }
-        } 
+              },
+              {
+                  "id": 2,
+                  "name": "Barcelona, Spain",
+                  "image": "barcelona.jpg",
+                  "description": "It is the capital and largest city of the autonomous community of Catalonia.",
+                  "details": {
+                      "long_description": "It is the capital and largest city of the autonomous community of Catalonia, as well as the second-most populous municipality of Spain.",
+                      "itenary": [
+                          "Day 1: Arrive in Barcelona and visit the Basilica de la Sagrada Familia.",
+                          "Day 2: Follow the audio tour guide at Casa Batllo.",
+                          "Day 3: Sunbathe and swim at La Barceloneta."
+                      ],
+                      "location": {
+                          "lattitude": 61.7653,
+                          "longitude": 5.012
+                      }
+                  }
+              },
+              {
+                  "id": 3,
+                  "name": "Las Vegas, USA",
+                  "image": "lasVegas.jpg",
+                  "description": "The city of sin. What happens in Vegas, stays in Vegas.",
+                  "details": {
+                      "long_description": "Las Vegas, colloquially referred to as Vegas, is the most populous city in the U.S. state of Nevada and the seat of Clark County",
+                      "itenary": [
+                          "Day 1: Arrive in Vegas and visit the casinos.",
+                          "Day 2: See one of the many shows offered at the Encore theater like Drag Race Live.",
+                          "Day 3: Visit Netflix Bites, restaurant with themed drinks and food are served."
+                      ],
+                      "location": {
+                          "lattitude": 100.1290,
+                          "longitude": 9.197
+                      }
+                  }
+              }
+          ] 
+      }
+
+      function getParam(idArg) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(idArg);
+      }
+
+      const idHomePage = getParam('id');
+      const cardContainer = document.getElementById("destInfo");
+
+      function getJsonDestination(cardInfo) {
+        
+        const cardItem = document.createElement("div");
+        cardItem.innerHTML = `
+        <img src="${cardInfo.cards[idHomePage].image}" alt="${cardInfo.cards[idHomePage].description}">
+        <p>${cardInfo.cards[idHomePage].details.long_description}</p>
+        `;
+        cardContainer.appendChild(cardItem);
+      
+    }
+
+    getJsonDestination(jsonDestination);
     </script>
   </body>
 </html>
