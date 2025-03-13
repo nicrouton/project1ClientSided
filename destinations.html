@@ -14,6 +14,8 @@
         display: flex;
         align-items: center;
         flex-direction: column;
+        flex-wrap: wrap;
+        padding: 50px;
       }
 
       img {
@@ -26,6 +28,12 @@
         flex-direction: column;
         align-items: center;
         background-color: aqua;
+      }
+
+      form {
+        background-color: aqua;
+        justify-content: center;
+        padding: 50px;
       }
     </style>
   </head>
@@ -120,7 +128,7 @@ jsonDestination = {
         <br>
         <h4>Interested in a trip? Share your details below:</h4>
         <br>
-        <form>
+        <form id="formTour">
         <input type="radio" id="paris" name="dest_choice" value="Paris, France">
         <label for="paris">Paris, France</label><br>
         <input type="radio" id="barcelona" name="dest_choice" value="Barcelona">
@@ -137,8 +145,10 @@ jsonDestination = {
         <label for="traveler">Number of travelers:</label><br>
         <input type="number" id="traveler" name="traveler" min="0" max="1000" step="10" value="0"><br>
         <label for="birthday">Travel Date:</label>
-        <input type="date" id="tDate" name="tDate" min="">
-        <input type="submit" value="Submit">
+        <input type="date" id="tDate" name="tDate" min=""><br>
+        <input type="submit" value="Submit" onclick="alert("Tour Booked.");
+        console.log("Tour booked.");
+        document.getElementById("formTour").reset();">
         </form>
         `;
         cardContainer.appendChild(cardItem);
@@ -156,6 +166,7 @@ jsonDestination = {
     }
 
     getJsonDestination(jsonDestination);
+
     </script>
   </body>
 </html>

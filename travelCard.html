@@ -8,17 +8,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Project 1</title>
     <style>
+
       body {
         background-color: rgb(99, 234, 234);
         display: flex;
         align-items: center;
         justify-content: center;
         flex-direction: column;
+        flex-wrap: wrap;
+        padding: 50px;
       }
 
       img {
         border-radius: 8px;
         max-width: 50%;
+        padding: 10px;
       }
 
       #cards {
@@ -32,6 +36,7 @@
         background-color: rgb(65, 197, 209);
         border-style: inset;
         border-width: 5px 5px;
+        padding: 10px;
       }
 
       h1 {
@@ -116,7 +121,7 @@
           const cardItem = document.createElement("div");
           cardItem.innerHTML = `
 				<h4>${element.name}</h4>
-                 <p>Destination ${element.description}</p>
+                 <p>${element.description}</p>
                  <img src="${element.image}" alt="${element.description}">
                  <a href="destinations.html?id=${element.id}" class="destinations"><p>Click here to see more.</p></a>
                  <br>
