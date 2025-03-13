@@ -10,6 +10,10 @@
     <style>
       body {
         background-color: rgb(99, 234, 234);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
       }
 
       img {
@@ -112,7 +116,7 @@
           const cardItem = document.createElement("div");
           cardItem.innerHTML = `
 				<h4>${element.name}</h4>
-                 <p>${element.description}</p>
+                 <p>Destination ${element.description}</p>
                  <img src="${element.image}" alt="${element.description}">
                  <a href="destinations.html?id=${element.id}" class="destinations"><p>Click here to see more.</p></a>
                  <br>
