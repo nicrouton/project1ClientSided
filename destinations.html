@@ -46,8 +46,8 @@ jsonDestination = {
                   "details": {
                       "long_description": "Paris is the capital of France and is known for being home to talented designers and cooks.",
                       "itenary": [
-                          "Day 1: Arrive in Paris and visit the Eiffel Tower.",
-                          "Day 2: Discover the Louvre Musuem and stroll through the Champs-Elysees.",
+                          "Day 1: Arrive in Paris and visit the Eiffel Tower.\n",
+                          "Day 2: Discover the Louvre Musuem and stroll through the Champs-Elysees.\n",
                           "Day 3: Visit Goustau's, a five star restaurant, and walk along the Seine River."
                       ],
                       "location": {
@@ -67,13 +67,13 @@ jsonDestination = {
                   "details": {
                       "long_description": "It is the capital and largest city of the autonomous community of Catalonia, as well as the second-most populous municipality of Spain.",
                       "itenary": [
-                          "Day 1: Arrive in Barcelona and visit the Basilica de la Sagrada Familia.",
-                          "Day 2: Follow the audio tour guide at Casa Batllo.",
+                          "Day 1: Arrive in Barcelona and visit the Basilica de la Sagrada Familia.\n",
+                          "Day 2: Follow the audio tour guide at Casa Batllo.\n",
                           "Day 3: Sunbathe and swim at La Barceloneta."
                       ],
                       "location": {
-                          "lattitude": 61.7653,
-                          "longitude": 5.012
+                          "lattitude": 41.3874,
+                          "longitude": 2.1686
                       }
                   }
               },
@@ -85,13 +85,13 @@ jsonDestination = {
                   "details": {
                       "long_description": "Las Vegas, colloquially referred to as Vegas, is the most populous city in the U.S. state of Nevada and the seat of Clark County",
                       "itenary": [
-                          "Day 1: Arrive in Vegas and visit the casinos.",
-                          "Day 2: See one of the many shows offered at the Encore theater like Drag Race Live.",
+                          "Day 1: Arrive in Vegas and visit the casinos.\n",
+                          "Day 2: See one of the many shows offered at the Encore theater like Drag Race Live.\n",
                           "Day 3: Visit Netflix Bites, restaurant with themed drinks and food are served."
                       ],
                       "location": {
-                          "lattitude": 100.1290,
-                          "longitude": 9.197
+                          "lattitude": 36.1716,
+                          "longitude": -115.1391
                       }
                   }
               }
@@ -113,7 +113,33 @@ jsonDestination = {
         <h1>${cardInfo.cards[idHomePage].name}</h1>
         <img src="${cardInfo.cards[idHomePage].image}" alt="${cardInfo.cards[idHomePage].description}">
         <p>${cardInfo.cards[idHomePage].details.long_description}</p>
+        <br>
+        <h4>Things to do:</h4>
+        <p>${cardInfo.cards[idHomePage].details.itenary}</p>
         <div id="map" style="width: 600px; height: 400px;"></div>
+        <br>
+        <h4>Interested in a trip? Share your details below:</h4>
+        <br>
+        <form>
+        <input type="radio" id="paris" name="dest_choice" value="Paris, France">
+        <label for="paris">Paris, France</label><br>
+        <input type="radio" id="barcelona" name="dest_choice" value="Barcelona">
+        <label for="barcelona">Barcelona, Spain</label><br>
+        <input type="radio" id="vegas" name="dest_choice" value="Vegas">
+        <label for="vegas">Las Vegas</label>
+        <br>
+        <label for="fname">First name:</label><br>
+        <input type="text" id="fname" name="fname"><br>
+        <label for="lname">Last name:</label><br>
+        <input type="text" id="lname" name="lname"><br>
+        <label for="emailInput">Email:</label><br>
+        <input type="email" id="emailInput" name="emailInput"><br>
+        <label for="traveler">Number of travelers:</label><br>
+        <input type="number" id="traveler" name="traveler" min="0" max="1000" step="10" value="0"><br>
+        <label for="birthday">Travel Date:</label>
+        <input type="date" id="tDate" name="tDate" min="">
+        <input type="submit" value="Submit">
+        </form>
         `;
         cardContainer.appendChild(cardItem);
 
@@ -123,6 +149,10 @@ jsonDestination = {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
       
+        document.addEventListener("DOMContentLoaded", function () {
+        let today = new Date().toISOString().split("T")[0]; 
+        document.getElementById("dateInput").setAttribute("min", today);
+    });
     }
 
     getJsonDestination(jsonDestination);
