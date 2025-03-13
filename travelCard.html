@@ -168,6 +168,8 @@
           case jsonDestination.cards[2].name:
             window.location.href = "destinations.html?id=" + jsonDestination.cards[2].id;
             break;
+          default:
+            alert("Search had no matches.");
         }
         console.log("Completed search function.");
         return true;
@@ -189,9 +191,9 @@
           });
           const searchDiv = document.getElementById("search");
           searchDiv.innerHTML = `
-            <form>
+            <form onsubmit="return search()">
             <input type="text" id="searchText" placeholder="Search.." name="search">
-            <button type="submit" onclick="return search();">Submit</button>
+            <button type="submit">Submit</button>
             </form>`;
         
       }
