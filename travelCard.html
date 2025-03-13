@@ -18,6 +18,8 @@
         flex-wrap: wrap;
         padding: 20px;
         max-width: 80%;
+        min-height: 100vh;
+        font-size: medium;
       }
 
       img {
@@ -65,15 +67,25 @@
         flex-wrap: wrap;
       }
 
+      @media screen and (max-width: 600px) {
+        .topnav .search-container {
+          float: none;
+       }
+
+       body {
+         font-size: large;
+       }
+      }
+
     </style>
   </head>
   <body>
     <h1>ClearSky Travel</h1>
     <div class="topnav">
       <div class="search-container">
-        <form action="/action_page.php">
-          <input type="text" placeholder="Search.." name="search">
-          <button type="submit">Submit</button>
+        <form>
+          <input type="text" id="searchText" placeholder="Search.." name="search">
+          <button type="submit" onclick="return search();">Submit</button>
         </form>
       </div>
     </div>
@@ -143,6 +155,24 @@
       }
 
       const cardContainer = document.getElementById("cards");
+
+      function search() {
+        let searchArg = document.getElementById("searchText").value;
+
+        switch(searchArg) {
+          case jsonDestination.cards[0].name:
+            window.location.href = "destinations.html?id=" + jsonDestination.cards[0].id;
+            break;
+          case jsonDestination.cards[1].name:
+            window.location.href = "destinations.html?id=" + jsonDestination.cards[1].id;
+            break;
+          case jsonDestination.cards[2].name:
+            window.location.href = "destinations.html?id=" + jsonDestination.cards[2].id;
+            break;
+        }
+        console.log("Completed search function.");
+        return true;
+      }
 
       function getJsonLocal(destinationArg) {
         destinationArg.cards.forEach(element => {
