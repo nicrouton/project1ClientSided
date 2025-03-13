@@ -86,14 +86,7 @@
   </head>
   <body>
     <h1>ClearSky Travel</h1>
-    <div class="topnav">
-      <div class="search-container">
-        <form>
-          <input type="text" id="searchText" placeholder="Search.." name="search">
-          <button type="submit" onclick="return search();">Submit</button>
-        </form>
-      </div>
-    </div>
+    <div id="search"></div>
     <br>
     <div id="cards"></div>
     <script>
@@ -194,6 +187,13 @@
             // update html
             cardContainer.appendChild(cardItem);
           });
+          const searchDiv = document.getElementById("search");
+          searchDiv.innerHTML = `
+            <form>
+            <input type="text" id="searchText" placeholder="Search.." name="search">
+            <button type="submit" onclick="return search();">Submit</button>
+            </form>`;
+        
       }
 
 
