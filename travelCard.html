@@ -52,10 +52,31 @@
         font-family: Georgia, 'Times New Roman', Times, serif;
         max-width: 80%;
       }
+
+      .topnav {
+        overflow: hidden;
+        background-color: #d2f3f8;
+      }
+
+      .topnav {
+        display: flex;
+        border-style: none;
+        padding: 10px;
+        flex-wrap: wrap;
+      }
+
     </style>
   </head>
   <body>
     <h1>ClearSky Travel</h1>
+    <div class="topnav">
+      <div class="search-container">
+        <form action="/action_page.php">
+          <input type="text" placeholder="Search.." name="search">
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
     <br>
     <div id="cards"></div>
     <script>
