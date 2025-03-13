@@ -103,7 +103,7 @@ jsonDestination = {
             return urlParams.get(idArg);
       }
 
-      const idHomePage = getParam('id');
+      const idHomePage = getParam('id') - 1;
       const cardContainer = document.getElementById("destInfo");
 
       function getJsonDestination(cardInfo) {
@@ -117,7 +117,7 @@ jsonDestination = {
         `;
         cardContainer.appendChild(cardItem);
 
-        var map = L.map('map').setView([51.505, -0.09], 13); // Center on London, zoom level 13
+        var map = L.map('map').setView([cardInfo.cards[idHomePage].details.location.lattitude, cardInfo.cards[idHomePage].details.location.longitude], 13); // Center on London, zoom level 13
 
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
